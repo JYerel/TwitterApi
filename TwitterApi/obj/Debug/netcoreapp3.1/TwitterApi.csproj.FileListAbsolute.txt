@@ -296,6 +296,7 @@ C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\Microso
 C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Razor.dll
 C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.resources.dll
@@ -323,7 +324,6 @@ C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\ru\Micr
 C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.csprojAssemblyReference.cache
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.AssemblyInfoInputs.cache
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.AssemblyInfo.cs
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.csproj.CoreCompileInputs.cache
@@ -338,6 +338,8 @@ C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Twitter
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.TagHelpers.output.cache
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.RazorCoreGenerate.cache
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Razor\Views\Home\More.cshtml.g.cs
+C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Razor\Views\Home\TwitterHome.cshtml.g.cs
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -350,6 +352,3 @@ C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Twitter
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.dll
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.pdb
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.genruntimeconfig.cache
-C:\Users\user\source\repos\TwitterApi\TwitterApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Razor\Views\Home\TwitterHome.cshtml.g.cs
-C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Razor\Views\Home\More.cshtml.g.cs
