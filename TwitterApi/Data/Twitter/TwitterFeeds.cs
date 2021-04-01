@@ -19,28 +19,26 @@ namespace TwitterApi.Controllers.Twitter
 
             // Post token body content
             var content = new FormUrlEncodedContent(SetContentValues());
-            var base64EncodedAuthenticationString = EncodeCredentials();
-            var requestMessage = SetPostContent(content, base64EncodedAuthenticationString);
+            var requestMessage = SetPostContent(content, base64EncodedAuthenticationString());
 
             // Make the request
-            var task = TwitterApiClient.SendAsync(requestMessage);
-            var response = task.Result;
+            var response = TwitterApiClient.SendAsync(requestMessage).Result;
             response.EnsureSuccessStatusCode();
             string responseBody = response.Content.ReadAsStringAsync().Result;
 
             // Fetch Token
             var accessToken = GrabTokenInString(responseBody);
 
-
+            // Get Tweets
             var twitterFeed = GetTweets(accessToken);
 
             return twitterFeed;
         }
 
 
-        public static List<TwitterFeedModel> GetTweets(string token)
+        private static List<TwitterFeedModel> GetTweets(string token)
         {
-            var requestUserTimeline = new HttpRequestMessage(HttpMethod.Get, string.Format($"https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=BBC&count=6"));
+            var requestUserTimeline = new HttpRequestMessage(HttpMethod.Get, string.Format($"https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=BBC&count=9"));
             requestUserTimeline.Headers.Add("Authorization", "Bearer " + token);
             var responseUserTimeLine = TwitterApiClient.SendAsync(requestUserTimeline).Result;
             string responseTwitter = responseUserTimeLine.Content.ReadAsStringAsync().Result;
@@ -64,20 +62,20 @@ namespace TwitterApi.Controllers.Twitter
             return TwitterApiClient;
         }
 
-        private static string EncodeCredentials()
+        private static string base64EncodedAuthenticationString()
         {
             string authenticationString = "DSnZt2yM4GHGxjZDe1oyrrf0Q:cnHL52gB4dSesiyejTONs01wajvPlNSdsjW6Yj0GDhNwxrtiY1";
             return Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(authenticationString));
         }
 
-        public static List<KeyValuePair<string, string>> SetContentValues()
+        private static List<KeyValuePair<string, string>> SetContentValues()
         {
             var values = new List<KeyValuePair<string, string>>();
             values.Add(new KeyValuePair<string, string>("grant_type", "client_credentials"));
             return values;
         }
 
-        public static HttpRequestMessage SetPostContent(FormUrlEncodedContent contents, string AuthenticationString)
+        private static HttpRequestMessage SetPostContent(FormUrlEncodedContent contents, string AuthenticationString)
         {
             var requestMessages = new HttpRequestMessage(HttpMethod.Post, "/oauth2/token");
             requestMessages.Headers.Authorization = new AuthenticationHeaderValue("Basic", AuthenticationString);
@@ -85,7 +83,7 @@ namespace TwitterApi.Controllers.Twitter
             return requestMessages;
         }
 
-        public static string GrabTokenInString(string response)
+        private static string GrabTokenInString(string response)
         {
             return response.Substring(response.IndexOf("access_token\":\"") + "access_token\":\"".Length, response.IndexOf("\"}") - (response.IndexOf("access_token\":\"") + "access_token\":\"".Length));
         }
