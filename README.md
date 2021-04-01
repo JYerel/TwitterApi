@@ -1,4 +1,4 @@
-# TwitterApi
+# TwitterApi (MVC .NET Core 3.1)
 
 This twitter API sample uses the Twitter's Developer Platform emabling to fetch the latest tweets update within this MVC .Net Core application.
 Twitter's API provides tools, resources, data and API productsso it can later be integrated onto this project.
