@@ -2793,9 +2793,9 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-info:hover {
-  color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+    color: #fff;
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
 }
 
 .btn-outline-info:focus, .btn-outline-info.focus {
@@ -6578,7 +6578,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+    background-color: #212529 !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,

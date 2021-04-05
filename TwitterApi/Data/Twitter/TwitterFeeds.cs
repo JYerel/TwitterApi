@@ -13,39 +13,49 @@ namespace TwitterApi.Controllers.Twitter
     {
         public static HttpClient TwitterApiClient { get; set; } = new HttpClient();
 
-        public static List<TwitterFeedModel> GetTwitterFeeds()
+        public static string TwitterName { get; set; } = "BBC"; // default
+
+        public static List<TwitterFeedModel> GetTwitterFeeds(string inTwitterUsername = "BBC")
         {
             TwitterApiClient = SetTokenBaseData();
 
             // Post token body content
             var content = new FormUrlEncodedContent(SetContentValues());
-            var requestMessage = SetPostContent(content, base64EncodedAuthenticationString());
+            var requestMessage = SetPostContent(content, Base64EncodedAuthenticationString());
 
             // Make the request
             var response = TwitterApiClient.SendAsync(requestMessage).Result;
             response.EnsureSuccessStatusCode();
             string responseBody = response.Content.ReadAsStringAsync().Result;
 
-            // Fetch Token
-            var accessToken = GrabTokenInString(responseBody);
-
             // Get Tweets
-            var twitterFeed = GetTweets(accessToken);
+            var accessToken = GrabTokenInString(responseBody);
+            var twitterFeed = GetTweets(inTwitterUsername, accessToken);
 
             return twitterFeed;
         }
 
-
-        private static List<TwitterFeedModel> GetTweets(string token)
+        private static List<TwitterFeedModel> GetTweets(string inTwitterUserName,string inToken)
         {
-            var requestUserTimeline = new HttpRequestMessage(HttpMethod.Get, string.Format($"https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=BBC&count=9"));
-            requestUserTimeline.Headers.Add("Authorization", "Bearer " + token);
+            var requestUserTimeline = new HttpRequestMessage(HttpMethod.Get, string.Format(
+                $"https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name={inTwitterUserName}&count=9"
+                ));
+            requestUserTimeline.Headers.Add("Authorization", "Bearer " + inToken);
             var responseUserTimeLine = TwitterApiClient.SendAsync(requestUserTimeline).Result;
             string responseTwitter = responseUserTimeLine.Content.ReadAsStringAsync().Result;
 
             // Fetch Json Result
-            var twitterFeeds = JsonConvert.DeserializeObject<List<TwitterFeedModel>>(responseTwitter);
-            return twitterFeeds;
+            if (responseUserTimeLine.IsSuccessStatusCode)
+            {
+                var twitterFeeds = JsonConvert.DeserializeObject<List<TwitterFeedModel>>(responseTwitter);
+                if (twitterFeeds.Count > 0)
+                {
+                    TwitterName = twitterFeeds[0].user.name;
+                }
+                return twitterFeeds;
+            }
+
+            return null;
         }
 
         private static HttpClient SetTokenBaseData()
@@ -62,7 +72,7 @@ namespace TwitterApi.Controllers.Twitter
             return TwitterApiClient;
         }
 
-        private static string base64EncodedAuthenticationString()
+        private static string Base64EncodedAuthenticationString()
         {
             string authenticationString = "DSnZt2yM4GHGxjZDe1oyrrf0Q:cnHL52gB4dSesiyejTONs01wajvPlNSdsjW6Yj0GDhNwxrtiY1";
             return Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(authenticationString));

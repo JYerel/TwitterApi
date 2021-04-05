@@ -29,12 +29,18 @@ namespace TwitterApi.Controllers
             return View();
         }
 
-        public ActionResult TwitterHome()
+        public ActionResult TwitterHome(string twitterUserName = "BBC")
         {
-            var model = TwitterFeeds.GetTwitterFeeds();
+            var model = TwitterFeeds.GetTwitterFeeds(twitterUserName);
 
             return View(model);
         }
+
+        public PartialViewResult AddTwitterModal()
+        {
+            return PartialView("_AddTwitterModal");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
