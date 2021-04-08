@@ -395,4 +395,3 @@ C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\Twitter
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.dll
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.pdb
 C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.genruntimeconfig.cache
-C:\Users\user\source\repos\TwitterApi\TwitterApi\obj\Debug\netcoreapp3.1\TwitterApi.csprojAssemblyReference.cache
