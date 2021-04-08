@@ -6,7 +6,7 @@
     var screenName = "Not found";
     var screenNameUrl = "#";
 
-    if (Model != null)
+    if (Model.Count > 0)
     {
         titleHeading = Model.First().user.name;
         screenName = Model.First().user.screen_name;
