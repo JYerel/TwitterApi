@@ -8,3 +8,6 @@ Twitter's API provides tools, resources, data and API productsso it can later be
 * Get Latest tweets - Currently its set to get BBC latest tweets.
 * Display tweets - (User Name, User Description, Tweet Content, Tweet Images, Tweet created date time).
 * Allow Custom Tweets Add - This will allow user to display their own twitter account or others.
+
+### See on
+http://twitter-api.azurewebsites.net
