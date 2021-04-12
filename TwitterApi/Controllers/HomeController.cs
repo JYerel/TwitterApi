@@ -5,18 +5,21 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using TwitterApi.Controllers.Twitter;
 using TwitterApi.Models;
 
 namespace TwitterApi.Controllers
 {
+    
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly AppSettings _appSettings;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IOptions<AppSettings> appSettings)
         {
-            _logger = logger;
+            _appSettings = appSettings.Value;
         }
 
         public ActionResult Index()
@@ -31,7 +34,7 @@ namespace TwitterApi.Controllers
 
         public ActionResult TwitterHome(string twitterUserName = "BBC")
         {
-            var model = TwitterFeeds.GetTwitterFeeds(twitterUserName);
+            var model = TwitterFeeds.GetTwitterFeeds( _appSettings.ConsumerKey, _appSettings.ConsumerSecret, twitterUserName);
 
             return View(model);
         }

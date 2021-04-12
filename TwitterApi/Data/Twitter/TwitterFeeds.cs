@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using TwitterApi.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace TwitterApi.Controllers.Twitter
 {
@@ -15,13 +17,14 @@ namespace TwitterApi.Controllers.Twitter
 
         public static string TwitterName { get; set; } = "BBC"; // default
 
-        public static List<TwitterFeedModel> GetTwitterFeeds(string inTwitterUsername = "BBC")
+
+        public static List<TwitterFeedModel> GetTwitterFeeds(string inConsumerKey, string inConsumerSecret, string inTwitterUsername = "BBC")
         {
             TwitterApiClient = SetTokenBaseData();
 
             // Post token body content
             var content = new FormUrlEncodedContent(SetContentValues());
-            var requestMessage = SetPostContent(content, Base64EncodedAuthenticationString());
+            var requestMessage = SetPostContent(content, Base64EncodedAuthenticationString(inConsumerKey, inConsumerSecret));
 
             // Make the request
             var response = TwitterApiClient.SendAsync(requestMessage).Result;
@@ -48,7 +51,7 @@ namespace TwitterApi.Controllers.Twitter
             if (responseUserTimeLine.IsSuccessStatusCode)
             {
                 var twitterFeeds = JsonConvert.DeserializeObject<List<TwitterFeedModel>>(responseTwitter);
-                if (twitterFeeds.Count > 0)
+                if (twitterFeeds?.Count > 0)
                 {
                     TwitterName = twitterFeeds[0].user.name;
                 }
@@ -72,10 +75,11 @@ namespace TwitterApi.Controllers.Twitter
             return TwitterApiClient;
         }
 
-        private static string Base64EncodedAuthenticationString()
+
+        private static string Base64EncodedAuthenticationString(string inConsumerKey, string inConsumerSecret)
         {
-            string authenticationString = "DSnZt2yM4GHGxjZDe1oyrrf0Q:cnHL52gB4dSesiyejTONs01wajvPlNSdsjW6Yj0GDhNwxrtiY1";
-            return Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(authenticationString));
+            string authenticationString = inConsumerKey + ":" + inConsumerSecret;
+            return Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(authenticationString));
         }
 
         private static List<KeyValuePair<string, string>> SetContentValues()

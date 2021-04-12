@@ -24,6 +24,12 @@ namespace TwitterApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // 1. Read app settings from AppSettings key from appsettings.json file
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+
+            // 2. Register it with a strongly typed object to access it using dependency injection 
+            services.Configure<AppSettings>(appSettingsSection);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
